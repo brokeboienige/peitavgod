@@ -2,7 +2,7 @@ const express = require("express")
 const axios = require("axios").default
 const cors = require("cors")
 const app = express()
-const env = require("dotenv")
+require("dotenv").config()
 var sent = false;
 
 app.use(cors())
@@ -21,14 +21,15 @@ app.get("/", (req, res)=>{
                                 'Subscribed Users'
                             ],
                             'contents': {
-                                'en': 'A PEITA SAIU!',
+                                'en': 'A PEITA SAIU! CLIQUE PARA ABRIR A SHOPEE',
                             },
+                            'url': 'https://shopee.com.br/product/377206033/8286150621/',
                             'app_id':'cf17619d-b4d5-4639-af55-8c41a8c378a3'
                         },
                         {
                             headers: {
                                 'Accept': 'application/json',
-                                'Authorization': `Basic ${process.env['onesignal_apikey']}`,
+                                'Authorization': `Basic ${process.env['APIKEY']}`,
                                 'Content-Type': 'application/json'
                             }
                         }
@@ -40,6 +41,6 @@ app.get("/", (req, res)=>{
         })
 })
 
-app.listen(3000, ()=>{
-    console.log("rodando na porta 3000")
+app.listen(80, ()=>{
+    console.log("rodando na porta 80")
 })
